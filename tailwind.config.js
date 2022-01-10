@@ -18,6 +18,9 @@ module.exports = {
         },
         aqua: '#00ffff',
       },
+      minHeight: {
+        36: '9rem',
+      },
     },
   },
   plugins: [],
