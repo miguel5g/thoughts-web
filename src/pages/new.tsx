@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { api } from '../services/Api';
 
@@ -11,7 +11,7 @@ const New = () => {
   const [content, setContent] = useState('');
   const [isLoading, setLoading] = useState(false);
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (isLoading) return;
@@ -29,7 +29,7 @@ const New = () => {
       .catch((err) => {
         setLoading(false);
         console.log(err);
-        alert('Erro ao salvar pensamento. \n\nDetalhes no DevTools.');
+        alert('Erro ao salvar pensamento.\n\nDetalhes no DevTools.');
       });
   }
 
@@ -67,7 +67,7 @@ const New = () => {
           </div>
 
           <button className="bg-white-light bg-opacity-10 mx-auto px-6 py-2 text-xl rounded transition hover:opacity-75">
-            Salvar
+            {isLoading ? 'Salvando...' : 'Salvar'}
           </button>
         </form>
       </main>
