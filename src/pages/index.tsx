@@ -20,10 +20,10 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
   const [isLastPage, setLastPage] = useState(false);
 
   useEffect(() => {
-    checkPosts();
+    handleCheckPost();
   }, []);
 
-  async function checkPosts() {
+  async function handleCheckPost() {
     const { posts: lastPosts } = await getPosts();
 
     if (lastPosts[0].id !== posts[0].id) {
@@ -36,12 +36,12 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
 
     setLoading(true);
 
-    await getPosts(page + 1).then(({ posts: newPosts, totalPages }) => {
-      setPosts((oldPosts) => [...oldPosts, ...newPosts]);
-      setPage(page + 1);
-      setLoading(false);
-      setLastPage(page + 1 === totalPages);
-    });
+    const { posts: newPosts, totalPages } = await getPosts(page + 1);
+
+    setPosts((oldPosts) => [...oldPosts, ...newPosts]);
+    setPage(page + 1);
+    setLoading(false);
+    setLastPage(page + 1 === totalPages);
   }
 
   return (
