@@ -6,7 +6,7 @@ interface PostResponse {
 }
 
 export async function getPosts(page = 1): Promise<PostResponse> {
-  const requestPromise = new Promise<PostResponse>((resolve, reject) => {
+  return new Promise<PostResponse>((resolve, reject) => {
     api
       .get('/posts', { params: { page } })
       .then(({ data }) => {
@@ -17,6 +17,4 @@ export async function getPosts(page = 1): Promise<PostResponse> {
         resolve({ totalPages: 0, posts: [] });
       });
   });
-
-  return requestPromise;
 }
