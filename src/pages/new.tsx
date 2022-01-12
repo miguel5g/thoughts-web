@@ -50,7 +50,7 @@ const New = () => {
 
       <main className="max-w-lg w-full bg-gray-light p-6 rounded mx-auto">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <h1 className="text-center text-3xl font-bold text-white-light">Criar novo pensamento</h1>
+          <h1 className="text-center text-3xl font-bold text-white">Criar novo pensamento</h1>
 
           <div className={style.inputGroup}>
             <label htmlFor="validator">Código de validação</label>
@@ -72,7 +72,7 @@ const New = () => {
             <textarea id="content" value={content} onChange={(e) => setContent(e.target.value)} />
           </div>
 
-          <button className="bg-white-light bg-opacity-10 mx-auto px-6 py-2 text-xl rounded transition hover:opacity-75">
+          <button className="bg-gray-highlight mx-auto px-6 py-2 rounded transition hover:opacity-75">
             {isLoading ? 'Salvando...' : 'Salvar'}
           </button>
         </form>

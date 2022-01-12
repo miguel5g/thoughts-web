@@ -51,7 +51,7 @@ class AppDocument extends Document {
           />
         </Head>
 
-        <body className="font-mono bg-gray-dark text-white-dark">
+        <body className="font-mono bg-gray text-white-dark">
           <Main />
           <NextScript />
         </body>

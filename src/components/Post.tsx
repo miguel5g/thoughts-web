@@ -17,13 +17,13 @@ export const Post = ({ post }: PostProps) => {
     <div className="flex flex-col p-6 bg-gray-light rounded">
       <h2 className="mb-3 text-xl font-semibold text-aqua">
         {dates.created}{' '}
-        <span className="text-sm text-white-light text-opacity-60">há {dates.distance}</span>
+        <span className="text-sm text-white text-opacity-60">há {dates.distance}</span>
       </h2>
 
       <p className="text-sm whitespace-pre-wrap">{post.content}</p>
 
       {post.note && (
-        <p className="text-sm whitespace-pre-wrap mt-2 py-1.5 px-2 border-l-4 border-aqua bg-white-light bg-opacity-10 rounded">
+        <p className="text-sm whitespace-pre-wrap mt-2 py-1.5 px-2 border-l-4 border-aqua bg-gray-highlight rounded">
           {post.note}
         </p>
       )}

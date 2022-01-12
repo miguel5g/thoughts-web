@@ -6,7 +6,7 @@
 }
 
 .inputGroup :is(input, textarea) {
-  @apply bg-white-light bg-opacity-10 p-1 rounded text-white-light;
+  @apply bg-white bg-opacity-10 p-1 rounded text-white;
 }
 
 .inputGroup textarea {

@@ -9,11 +9,12 @@ module.exports = {
       },
       colors: {
         gray: {
+          DEFAULT: '#121214',
           light: '#202024',
-          dark: '#121214',
+          highlight: '#37373A',
         },
         white: {
-          light: '#fff',
+          DEFAULT: '#fff',
           dark: '#e1e1e1',
         },
         aqua: '#00ffff',

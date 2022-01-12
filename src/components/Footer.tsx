@@ -16,7 +16,7 @@ export const Footer = () => {
       </h2>
 
       <Link href="/new" passHref>
-        <a className="mt-2 sm:ml-4 sm:mt-0 p-1 rounded bg-white-light bg-opacity-10">Não clique!</a>
+        <a className="mt-2 sm:ml-4 sm:mt-0 p-1 rounded bg-gray-highlight">Não clique!</a>
       </Link>
     </footer>
   );

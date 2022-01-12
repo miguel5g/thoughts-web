@@ -63,7 +63,7 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
 
         {!isLastPage && (
           <button
-            className="bg-gray-light mx-auto px-6 py-2 text-xl rounded transition hover:opacity-75"
+            className="bg-gray-highlight mx-auto my-4 px-6 py-2 rounded transition hover:opacity-75"
             onClick={handleLoadMore}
           >
             {isLoading ? 'Carregando...' : 'Carregar mais'}
