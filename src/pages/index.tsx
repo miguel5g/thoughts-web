@@ -45,7 +45,7 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen gap-4">
+    <div className="flex flex-col min-h-screen gap-8">
       <Head>
         <title>Pensamentos do Miguel</title>
       </Head>
@@ -63,7 +63,7 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
 
         {!isLastPage && (
           <button
-            className="px-6 py-2 mx-auto my-4 transition rounded bg-gray-highlight hover:opacity-75"
+            className="px-6 py-2 mx-auto mt-4 transition rounded bg-gray-highlight hover:opacity-75"
             onClick={handleLoadMore}
           >
             {isLoading ? 'Carregando...' : 'Carregar mais'}
