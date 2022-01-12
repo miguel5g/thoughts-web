@@ -1,14 +1,19 @@
 .inputGroup {
-  @apply flex flex-col gap-1;
+  @apply flex flex-col flex-1 gap-2;
 }
 
 .inputGroup label {
+  @apply text-sm font-light;
 }
 
 .inputGroup :is(input, textarea) {
-  @apply p-1 text-white bg-white rounded bg-opacity-10;
+  @apply p-4 text-white rounded-lg bg-gray-highlight;
 }
 
 .inputGroup textarea {
   @apply min-h-36 max-h-72;
+}
+
+.group {
+  @apply flex gap-4 bg-red-900;
 }

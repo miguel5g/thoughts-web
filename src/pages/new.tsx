@@ -1,11 +1,13 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { FiArrowLeft } from 'react-icons/fi';
+
 import { Button } from '../components/Button';
 
 import { api } from '../services/Api';
 
-import style from '../styles/pages/new.module.css';
+import styles from '../styles/pages/new.module.css';
 
 const New = () => {
   const [validator, setValidator] = useState('');
@@ -36,7 +38,7 @@ const New = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen gap-8 px-3">
+    <div className="flex flex-col min-h-screen px-3">
       <Head>
         <title>Criar novo pensamento</title>
       </Head>
@@ -44,16 +46,21 @@ const New = () => {
       <header className="flex items-center py-3">
         <div className="flex w-full max-w-3xl mx-auto">
           <Link href="/" passHref>
-            <a className="text-aqua">Voltar</a>
+            <a className="flex items-center gap-2">
+              <FiArrowLeft className="text-aqua" />
+              <span className="text-lg transition text-white-dark hover:text-white">
+                Voltar para o início
+              </span>
+            </a>
           </Link>
         </div>
       </header>
 
-      <main className="w-full max-w-lg p-6 mx-auto rounded bg-gray-light">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <h1 className="text-3xl font-bold text-center text-white">Criar novo pensamento</h1>
+      <main className="w-full max-w-2xl p-16 mx-auto my-16 rounded bg-gray-light">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+          <h1 className="text-3xl font-bold text-white">Novo pensamento</h1>
 
-          <div className={style.inputGroup}>
+          <div className={styles.inputGroup}>
             <label htmlFor="validator">Código de validação</label>
             <input
               id="validator"
@@ -63,12 +70,12 @@ const New = () => {
             />
           </div>
 
-          <div className={style.inputGroup}>
+          <div className={styles.inputGroup}>
             <label htmlFor="note">Nota do pensamento</label>
             <input id="note" type="text" value={note} onChange={(e) => setNote(e.target.value)} />
           </div>
 
-          <div className={style.inputGroup}>
+          <div className={styles.inputGroup}>
             <label htmlFor="content">Pensamento</label>
             <textarea id="content" value={content} onChange={(e) => setContent(e.target.value)} />
           </div>
