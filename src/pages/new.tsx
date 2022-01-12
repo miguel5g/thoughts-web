@@ -9,6 +9,7 @@ import { Button } from '../components/Button';
 import { api } from '../services/Api';
 
 import styles from '../styles/pages/new.module.css';
+import { Footer } from '../components/Footer';
 
 const New = () => {
   const [validator, setValidator] = useState('');
@@ -54,7 +55,7 @@ const New = () => {
         <title>Criar novo pensamento</title>
       </Head>
 
-      <header className="flex items-center py-3">
+      <header className="flex items-center py-4">
         <div className="flex w-full max-w-3xl mx-auto">
           <Link href="/" passHref>
             <a className="flex items-center gap-2">
@@ -67,9 +68,9 @@ const New = () => {
         </div>
       </header>
 
-      <main className="w-full max-w-2xl p-16 mx-auto my-16 rounded bg-gray-light">
+      <main className="w-full max-w-2xl p-4 mx-auto my-4 rounded md:p-8 lg:p-16 lg:my-16 bg-gray-light">
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-          <h1 className="text-3xl font-bold text-white">Novo pensamento</h1>
+          <h1 className="text-3xl font-bold text-center text-white">Novo pensamento</h1>
 
           <div className={styles.inputGroup}>
             <label htmlFor="validator">Código de validação</label>

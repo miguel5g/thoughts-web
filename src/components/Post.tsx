@@ -15,16 +15,16 @@ export const Post = ({ post }: PostProps) => {
 
   return (
     <div className="flex flex-col p-6 rounded bg-gray-light">
-      <h2 className="mb-3 text-xl font-semibold text-aqua">
-        {dates.created}{' '}
-        <span className="text-sm text-white text-opacity-60">há {dates.distance}</span>
-      </h2>
+      <span className="flex flex-col mb-4 sm:gap-2 sm:flex-row sm:items-end">
+        <h2 className="font-semibold sm:text-xl text-aqua">{dates.created}</h2>
+        <span className="mb-px text-sm text-white text-opacity-60">há {dates.distance}</span>
+      </span>
 
       <p className="text-sm whitespace-pre-wrap">{post.content}</p>
 
       {post.note && (
-        <p className="text-sm whitespace-pre-wrap mt-2 py-1.5 px-2 border-l-4 border-aqua bg-gray-highlight rounded">
-          {post.note}
+        <p className="mt-2 py-1.5 px-2 border-l-4 border-aqua bg-gray-highlight rounded flex items-center">
+          <span className="text-xs sm:text-sm">{post.note}</span>
         </p>
       )}
     </div>
