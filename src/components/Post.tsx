@@ -14,7 +14,7 @@ export const Post = ({ post }: PostProps) => {
   };
 
   return (
-    <div className="flex flex-col p-6 bg-gray-light rounded">
+    <div className="flex flex-col p-6 rounded bg-gray-light">
       <h2 className="mb-3 text-xl font-semibold text-aqua">
         {dates.created}{' '}
         <span className="text-sm text-white text-opacity-60">há {dates.distance}</span>

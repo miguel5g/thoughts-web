@@ -52,8 +52,8 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
 
       <Header />
 
-      <main className="flex-1 mx-6 gap-3 flex flex-col">
-        <ul className="flex flex-col max-w-3xl mx-auto gap-3">
+      <main className="flex flex-col flex-1 gap-3 mx-6">
+        <ul className="flex flex-col max-w-3xl gap-3 mx-auto">
           {posts.map((post) => (
             <li key={post.id}>
               <Post post={post} />
@@ -63,7 +63,7 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
 
         {!isLastPage && (
           <button
-            className="bg-gray-highlight mx-auto my-4 px-6 py-2 rounded transition hover:opacity-75"
+            className="px-6 py-2 mx-auto my-4 transition rounded bg-gray-highlight hover:opacity-75"
             onClick={handleLoadMore}
           >
             {isLoading ? 'Carregando...' : 'Carregar mais'}

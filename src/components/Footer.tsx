@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const Footer = () => {
   return (
-    <footer className="text-sm flex flex-col sm:flex-row w-full items-center justify-center p-3 bg-gray-light">
+    <footer className="flex flex-col items-center justify-center w-full p-3 text-sm sm:flex-row bg-gray-light">
       <h2 className="">
         Created By{' '}
         <a
@@ -16,7 +16,7 @@ export const Footer = () => {
       </h2>
 
       <Link href="/new" passHref>
-        <a className="mt-2 sm:ml-4 sm:mt-0 p-1 rounded bg-gray-highlight">Não clique!</a>
+        <a className="p-1 mt-2 rounded sm:ml-4 sm:mt-0 bg-gray-highlight">Não clique!</a>
       </Link>
     </footer>
   );
