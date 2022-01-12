@@ -9,6 +9,7 @@ import style from '../styles/pages/new.module.css';
 const New = () => {
   const [validator, setValidator] = useState('');
   const [content, setContent] = useState('');
+  const [note, setNote] = useState('');
   const [isLoading, setLoading] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -19,7 +20,7 @@ const New = () => {
     setLoading(true);
 
     api
-      .post('/posts', { content, validator })
+      .post('/posts', { content, validator, note })
       .then(() => {
         setLoading(false);
         setContent('');
@@ -59,6 +60,11 @@ const New = () => {
               value={validator}
               onChange={(e) => setValidator(e.target.value)}
             />
+          </div>
+
+          <div className={style.inputGroup}>
+            <label htmlFor="note">Nota do pensamento</label>
+            <input id="note" type="text" value={note} onChange={(e) => setNote(e.target.value)} />
           </div>
 
           <div className={style.inputGroup}>

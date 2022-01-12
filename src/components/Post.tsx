@@ -21,6 +21,12 @@ export const Post = ({ post }: PostProps) => {
       </h2>
 
       <p className="text-sm whitespace-pre-wrap">{post.content}</p>
+
+      {post.note && (
+        <p className="text-sm whitespace-pre-wrap mt-2 py-1.5 px-2 border-l-4 border-aqua bg-white-light bg-opacity-10 rounded">
+          {post.note}
+        </p>
+      )}
     </div>
   );
 };
