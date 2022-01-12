@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { Button } from '../components/Button';
 
 import { api } from '../services/Api';
 
@@ -72,9 +73,7 @@ const New = () => {
             <textarea id="content" value={content} onChange={(e) => setContent(e.target.value)} />
           </div>
 
-          <button className="px-6 py-2 mx-auto transition rounded bg-gray-highlight hover:opacity-75">
-            {isLoading ? 'Salvando...' : 'Salvar'}
-          </button>
+          <Button className="mx-auto">{isLoading ? 'Salvando...' : 'Salvar'}</Button>
         </form>
       </main>
     </div>

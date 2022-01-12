@@ -7,6 +7,7 @@ import { Header } from '../components/Header';
 import { Post } from '../components/Post';
 
 import { getPosts } from '../utils/GetPosts';
+import { Button } from '../components/Button';
 
 interface HomeProps {
   totalPages: number;
@@ -26,7 +27,7 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
   async function handleCheckPost() {
     const { posts: lastPosts } = await getPosts();
 
-    if (lastPosts[0].id !== posts[0].id) {
+    if (lastPosts[0].id !== posts[0]?.id) {
       setPosts(lastPosts);
     }
   }
@@ -62,12 +63,9 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
         </ul>
 
         {!isLastPage && (
-          <button
-            className="px-6 py-2 mx-auto mt-4 transition rounded bg-gray-highlight hover:opacity-75"
-            onClick={handleLoadMore}
-          >
+          <Button className="mx-auto mt-4" onClick={handleLoadMore}>
             {isLoading ? 'Carregando...' : 'Carregar mais'}
-          </button>
+          </Button>
         )}
       </main>
 
