@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 import React, { useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -22,19 +23,29 @@ const New = () => {
 
     setLoading(true);
 
-    api
-      .post('/posts', { content, validator, note })
-      .then(() => {
+    const promise = api.post('/posts', {
+      content,
+      validator,
+      note: note === '' ? undefined : note,
+    });
+
+    toast.promise(promise, {
+      loading: 'Salvando...',
+      success: () => {
         setLoading(false);
         setContent('');
         setValidator('');
-        alert('Pensamento criado com sucesso!');
-      })
-      .catch((err) => {
+        setNote('');
+
+        return 'Pensamento criado com sucesso!';
+      },
+      error: (err) => {
         setLoading(false);
         console.log(err);
-        alert('Erro ao salvar pensamento.\n\nDetalhes no DevTools.');
-      });
+
+        return 'Ocorreu um erro ao salvar.';
+      },
+    });
   }
 
   return (
