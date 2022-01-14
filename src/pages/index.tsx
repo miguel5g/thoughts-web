@@ -5,6 +5,7 @@ import { Header } from '../components/Header';
 import { Post } from '../components/Post';
 import { Button } from '../components/Button';
 import { MonthlyHeader } from '../components/MonthlyHeader';
+import { MainSkeleton } from '../components/skeleton';
 
 import { usePosts } from '../hooks/usePosts';
 
@@ -32,7 +33,7 @@ const Home = () => {
       <Header />
 
       {posts.length <= 0 && isLoading ? (
-        <h2>Loading...</h2>
+        <MainSkeleton />
       ) : (
         <main className="flex flex-col flex-1 gap-3 mx-6">
           <ul className="flex flex-col max-w-3xl gap-3 mx-auto">
