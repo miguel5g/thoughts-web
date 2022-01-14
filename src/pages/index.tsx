@@ -8,6 +8,7 @@ import { Post } from '../components/Post';
 
 import { getPosts } from '../utils/GetPosts';
 import { Button } from '../components/Button';
+import { MonthlyHeader } from '../components/MonthlyHeader';
 
 interface HomeProps {
   totalPages: number;
@@ -45,6 +46,18 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
     setLastPage(page + 1 === totalPages);
   }
 
+  function isFirstOfMonthly(index: number): boolean {
+    const current = posts[index];
+    const previous = posts[index - 1];
+
+    if (!previous) return true;
+
+    const currentDate = new Date(current.createdAt);
+    const previousDate = new Date(previous.createdAt);
+
+    return currentDate.getMonth() !== previousDate.getMonth();
+  }
+
   return (
     <div className="flex flex-col min-h-screen gap-8">
       <Head>
@@ -55,8 +68,10 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
 
       <main className="flex flex-col flex-1 gap-3 mx-6">
         <ul className="flex flex-col max-w-3xl gap-3 mx-auto">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <li key={post.id}>
+              {isFirstOfMonthly(index) && <MonthlyHeader date={post.createdAt} />}
+
               <Post post={post} />
             </li>
           ))}

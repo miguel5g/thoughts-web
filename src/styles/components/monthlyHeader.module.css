@@ -1,0 +1,16 @@
+.monthlyHeaderContainer {
+  @apply my-3 p-2 relative flex items-center justify-center;
+}
+
+.monthlyHeaderContainer::before {
+  content: '';
+
+  height: 1px;
+  width: 100%;
+
+  @apply absolute bg-gray-highlight -z-10;
+}
+
+.monthlyHeaderContainer p {
+  @apply text-base first-letter:uppercase bg-gray px-6;
+}
