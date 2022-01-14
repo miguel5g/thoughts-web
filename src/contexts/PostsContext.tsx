@@ -11,7 +11,7 @@ interface PostsContextType {
 
 export const PostsContext = createContext({} as PostsContextType);
 
-export const PostContextProvider: React.FC = ({ children }) => {
+export const PostsProvider: React.FC = ({ children }) => {
   const [page, setPage] = useState(1);
   const [posts, setPosts] = useState<PostData[]>([]);
   const [isLoading, setLoading] = useState(true);

@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
-import { useEffect, useState } from 'react';
 
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
@@ -9,6 +8,7 @@ import { Button } from '../components/Button';
 import { MonthlyHeader } from '../components/MonthlyHeader';
 
 import { getPosts } from '../utils/GetPosts';
+import { usePosts } from '../hooks/usePosts';
 
 interface HomeProps {
   totalPages: number;
@@ -16,39 +16,13 @@ interface HomeProps {
 }
 
 const Home = ({ posts: initialPosts }: HomeProps) => {
-  const [posts, setPosts] = useState<PostData[]>(initialPosts);
-  const [page, setPage] = useState(1);
-  const [isLoading, setLoading] = useState(false);
-  const [isLastPage, setLastPage] = useState(false);
-
-  useEffect(() => {
-    handleCheckPost();
-  }, []);
-
-  async function handleCheckPost() {
-    const { posts: lastPosts } = await getPosts();
-
-    if (lastPosts[0].id !== posts[0]?.id) {
-      setPosts(lastPosts);
-    }
-  }
-
-  async function handleLoadMore() {
-    if (isLoading || isLastPage) return;
-
-    setLoading(true);
-
-    const { posts: newPosts, totalPages } = await getPosts(page + 1);
-
-    setPosts((oldPosts) => [...oldPosts, ...newPosts]);
-    setPage(page + 1);
-    setLoading(false);
-    setLastPage(page + 1 === totalPages);
-  }
+  const { handleLoadMore, isLastPage, isLoading, posts } = usePosts();
 
   function isFirstOfMonthly(index: number): boolean {
-    const current = posts[index];
-    const previous = posts[index - 1];
+    const postList = posts.length > 0 ? posts : initialPosts;
+
+    const current = postList[index];
+    const previous = postList[index - 1];
 
     if (!previous) return true;
 
@@ -68,7 +42,7 @@ const Home = ({ posts: initialPosts }: HomeProps) => {
 
       <main className="flex flex-col flex-1 gap-3 mx-6">
         <ul className="flex flex-col max-w-3xl gap-3 mx-auto">
-          {posts.map((post, index) => (
+          {(posts.length > 0 ? posts : initialPosts).map((post, index) => (
             <li key={post.id}>
               {isFirstOfMonthly(index) && <MonthlyHeader date={post.createdAt} />}
 
@@ -94,7 +68,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 
   return {
     props: data,
-    revalidate: 60,
+    revalidate: 15,
   };
 };
 

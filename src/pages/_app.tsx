@@ -1,11 +1,13 @@
 import type { AppProps } from 'next/app';
 import { Toaster } from 'react-hot-toast';
 
+import { PostsProvider } from '../contexts/PostsContext';
+
 import '../styles/globals.css';
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <PostsProvider>
       <Component {...pageProps} />
       <Toaster
         toastOptions={{
@@ -15,7 +17,7 @@ function App({ Component, pageProps }: AppProps) {
           },
         }}
       />
-    </>
+    </PostsProvider>
   );
 }
 
