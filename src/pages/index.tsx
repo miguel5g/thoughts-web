@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Post } from '../components/Post';
-
-import { getPosts } from '../utils/GetPosts';
 import { Button } from '../components/Button';
 import { MonthlyHeader } from '../components/MonthlyHeader';
+
+import { getPosts } from '../utils/GetPosts';
 
 interface HomeProps {
   totalPages: number;

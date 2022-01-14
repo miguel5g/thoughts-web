@@ -1,0 +1,11 @@
+.footerContainer {
+  @apply w-full p-3 bg-gray-light;
+}
+
+.footerWrapper {
+  @apply flex flex-col items-center justify-center w-full max-w-4xl text-sm sm:flex-row gap-2 sm:gap-4 mx-auto;
+}
+
+.footerWrapper > button {
+  @apply sm:ml-auto;
+}

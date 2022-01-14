@@ -1,23 +1,39 @@
 import Link from 'next/link';
+import { FiChevronsUp } from 'react-icons/fi';
+
+import { Button } from './Button';
+
+import styles from '../styles/components/footer.module.css';
 
 export const Footer = () => {
-  return (
-    <footer className="flex flex-col items-center justify-center w-full p-3 text-sm sm:flex-row bg-gray-light">
-      <h2 className="">
-        Created By{' '}
-        <a
-          href="https://github.com/miguel5g/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline"
-        >
-          Miguel Ângelo
-        </a>
-      </h2>
+  function handleBackToTop() {
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+  }
 
-      <Link href="/new" passHref>
-        <a className="p-1 mt-2 rounded sm:ml-4 sm:mt-0 bg-gray-highlight">Não clique!</a>
-      </Link>
+  return (
+    <footer className={styles.footerContainer}>
+      <div className={styles.footerWrapper}>
+        <p className="">
+          Created By{' '}
+          <a
+            href="https://github.com/miguel5g/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            Miguel Ângelo
+          </a>
+        </p>
+
+        <Link href="/new" passHref>
+          <a className="p-1 rounded bg-gray-highlight">Não clique aqui!</a>
+        </Link>
+
+        <Button onClick={handleBackToTop}>
+          <FiChevronsUp />
+          <span>Voltar para o início</span>
+        </Button>
+      </div>
     </footer>
   );
 };
