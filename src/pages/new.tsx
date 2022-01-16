@@ -7,15 +7,16 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { Button } from '../components/Button';
 
 import { api } from '../services/Api';
+import { usePosts } from '../hooks/usePosts';
 
 import styles from '../styles/pages/new.module.css';
-import { Footer } from '../components/Footer';
 
 const New = () => {
   const [validator, setValidator] = useState('');
   const [content, setContent] = useState('');
   const [note, setNote] = useState('');
   const [isLoading, setLoading] = useState(false);
+  const { refreshPosts } = usePosts();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -37,6 +38,7 @@ const New = () => {
         setContent('');
         setValidator('');
         setNote('');
+        refreshPosts();
 
         return 'Pensamento criado com sucesso!';
       },
@@ -84,12 +86,25 @@ const New = () => {
 
           <div className={styles.inputGroup}>
             <label htmlFor="note">Nota do pensamento</label>
-            <input id="note" type="text" value={note} onChange={(e) => setNote(e.target.value)} />
+            <input
+              id="note"
+              type="text"
+              maxLength={128}
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+            />
+            <span>Vazio ou entre 4 e 128 caracteres.</span>
           </div>
 
           <div className={styles.inputGroup}>
             <label htmlFor="content">Pensamento</label>
-            <textarea id="content" value={content} onChange={(e) => setContent(e.target.value)} />
+            <textarea
+              id="content"
+              maxLength={512}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+            <span>Entre 4 e 512 caracteres.</span>
           </div>
 
           <Button className="mx-auto">{isLoading ? 'Salvando...' : 'Salvar'}</Button>
