@@ -7,6 +7,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { Button } from '../components/Button';
 
 import { api } from '../services/Api';
+import { usePosts } from '../hooks/usePosts';
 
 import styles from '../styles/pages/new.module.css';
 
@@ -15,6 +16,7 @@ const New = () => {
   const [content, setContent] = useState('');
   const [note, setNote] = useState('');
   const [isLoading, setLoading] = useState(false);
+  const { refreshPosts } = usePosts();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,6 +38,7 @@ const New = () => {
         setContent('');
         setValidator('');
         setNote('');
+        refreshPosts();
 
         return 'Pensamento criado com sucesso!';
       },
