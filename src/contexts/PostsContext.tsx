@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 
 import { getPosts } from '../utils/GetPosts';
 
+type SearchCallback = () => void;
 interface PostsContextType {
   page: number;
   posts: PostData[];
@@ -9,9 +10,12 @@ interface PostsContextType {
   isLastPage: boolean;
   handleLoadMore: () => void;
   refreshPosts: () => void;
+  search: (search: string, callback?: SearchCallback) => void;
 }
 
 export const PostsContext = createContext({} as PostsContextType);
+
+let lastSearch = '';
 
 export const PostsProvider: React.FC = ({ children }) => {
   const [page, setPage] = useState(1);
@@ -56,6 +60,25 @@ export const PostsProvider: React.FC = ({ children }) => {
     setLastPage(totalPages === 1);
   }
 
+  async function search(term: string, callback?: SearchCallback) {
+    if (isLoading || term === lastSearch) return;
+
+    if (callback) callback();
+
+    setPage(1);
+    setPosts([]);
+    setLoading(true);
+    setLastPage(false);
+
+    const { posts: newPosts, totalPages } = await getPosts(1, term);
+
+    lastSearch = term;
+
+    setPosts(newPosts);
+    setLoading(false);
+    setLastPage(totalPages === 1);
+  }
+
   return (
     <PostsContext.Provider
       value={{
@@ -65,6 +88,7 @@ export const PostsProvider: React.FC = ({ children }) => {
         isLastPage,
         handleLoadMore,
         refreshPosts,
+        search,
       }}
     >
       {children}
