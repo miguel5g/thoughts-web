@@ -8,6 +8,7 @@ interface PostsContextType {
   isLoading: boolean;
   isLastPage: boolean;
   handleLoadMore: () => void;
+  refreshPosts: () => void;
 }
 
 export const PostsContext = createContext({} as PostsContextType);
@@ -43,6 +44,18 @@ export const PostsProvider: React.FC = ({ children }) => {
     setLastPage(page + 1 === totalPages);
   }
 
+  async function refreshPosts() {
+    setPage(1);
+    setLoading(true);
+    setLastPage(false);
+
+    const { posts: newPosts, totalPages } = await getPosts(1);
+
+    setPosts(newPosts);
+    setLoading(false);
+    setLastPage(totalPages === 1);
+  }
+
   return (
     <PostsContext.Provider
       value={{
@@ -51,6 +64,7 @@ export const PostsProvider: React.FC = ({ children }) => {
         isLoading,
         isLastPage,
         handleLoadMore,
+        refreshPosts,
       }}
     >
       {children}
