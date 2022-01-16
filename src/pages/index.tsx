@@ -62,7 +62,7 @@ const Home = () => {
             )}
 
             {!isLoading && posts.length === 0 && (
-              <li className="flex flex-col items-center justify-center p-6">
+              <li className="flex flex-col items-center justify-center p-6 text-center">
                 <img src="/svg/void.svg" alt="Vazio" className="w-2/5 mb-6" />
                 <h2 className="text-3xl font-bold text-white">Não encontrei nada com este termo</h2>
                 <p className="text-sm">Tente procurar por outras palavras ou frases!</p>
