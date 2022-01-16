@@ -5,10 +5,10 @@ interface PostResponse {
   posts: PostData[];
 }
 
-export async function getPosts(page = 1): Promise<PostResponse> {
+export async function getPosts(page = 1, search = ''): Promise<PostResponse> {
   return new Promise<PostResponse>((resolve, reject) => {
     api
-      .get('/posts', { params: { page } })
+      .get('/posts', { params: { page, search } })
       .then(({ data }) => {
         resolve({ totalPages: data.pages, posts: data.data });
       })
