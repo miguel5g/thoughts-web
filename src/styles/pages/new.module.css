@@ -14,6 +14,10 @@
   @apply min-h-36 max-h-72;
 }
 
+.inputGroup span {
+  @apply -mt-1 text-xs font-light;
+}
+
 .group {
   @apply flex gap-4 bg-red-900;
 }
