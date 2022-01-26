@@ -19,7 +19,7 @@ let lastSearch = '';
 
 export const ThoughtsProvider: React.FC = ({ children }) => {
   const [page, setPage] = useState(1);
-  const [Thoughts, setThoughts] = useState<ThoughtData[]>([]);
+  const [thoughts, setThoughts] = useState<ThoughtData[]>([]);
   const [isLoading, setLoading] = useState(true);
   const [isLastPage, setLastPage] = useState(false);
 
@@ -83,7 +83,7 @@ export const ThoughtsProvider: React.FC = ({ children }) => {
     <ThoughtsContext.Provider
       value={{
         page,
-        thoughts: Thoughts,
+        thoughts,
         isLoading,
         isLastPage,
         handleLoadMore,
