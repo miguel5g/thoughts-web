@@ -1,35 +1,35 @@
 import { createContext, useEffect, useState } from 'react';
 
-import { getPosts } from '../utils/GetPosts';
+import { getThoughts } from '../utils/GetThoughts';
 
 type SearchCallback = () => void;
-interface PostsContextType {
+interface ThoughtsContextType {
   page: number;
-  posts: PostData[];
+  thoughts: ThoughtData[];
   isLoading: boolean;
   isLastPage: boolean;
   handleLoadMore: () => void;
-  refreshPosts: () => void;
+  refreshThoughts: () => void;
   search: (search: string, callback?: SearchCallback) => void;
 }
 
-export const PostsContext = createContext({} as PostsContextType);
+export const ThoughtsContext = createContext({} as ThoughtsContextType);
 
 let lastSearch = '';
 
-export const PostsProvider: React.FC = ({ children }) => {
+export const ThoughtsProvider: React.FC = ({ children }) => {
   const [page, setPage] = useState(1);
-  const [posts, setPosts] = useState<PostData[]>([]);
+  const [Thoughts, setThoughts] = useState<ThoughtData[]>([]);
   const [isLoading, setLoading] = useState(true);
   const [isLastPage, setLastPage] = useState(false);
 
   useEffect(() => {
     async function handle() {
-      const initialPosts = await getPosts(1);
+      const initialThoughts = await getThoughts(1);
 
       setLoading(false);
-      setPosts(initialPosts.posts);
-      setLastPage(initialPosts.totalPages === 1);
+      setThoughts(initialThoughts.thoughts);
+      setLastPage(initialThoughts.totalPages === 1);
     }
 
     handle();
@@ -40,22 +40,22 @@ export const PostsProvider: React.FC = ({ children }) => {
 
     setLoading(true);
 
-    const { posts: newPosts, totalPages } = await getPosts(page + 1);
+    const { thoughts: newThoughts, totalPages } = await getThoughts(page + 1);
 
-    setPosts((oldPosts) => [...oldPosts, ...newPosts]);
+    setThoughts((oldThoughts) => [...oldThoughts, ...newThoughts]);
     setPage(page + 1);
     setLoading(false);
     setLastPage(page + 1 === totalPages);
   }
 
-  async function refreshPosts() {
+  async function refreshThoughts() {
     setPage(1);
     setLoading(true);
     setLastPage(false);
 
-    const { posts: newPosts, totalPages } = await getPosts(1);
+    const { thoughts: newThoughts, totalPages } = await getThoughts(1);
 
-    setPosts(newPosts);
+    setThoughts(newThoughts);
     setLoading(false);
     setLastPage(totalPages === 1);
   }
@@ -66,32 +66,32 @@ export const PostsProvider: React.FC = ({ children }) => {
     if (callback) callback();
 
     setPage(1);
-    setPosts([]);
+    setThoughts([]);
     setLoading(true);
     setLastPage(false);
 
-    const { posts: newPosts, totalPages } = await getPosts(1, term);
+    const { thoughts: newThoughts, totalPages } = await getThoughts(1, term);
 
     lastSearch = term;
 
-    setPosts(newPosts);
+    setThoughts(newThoughts);
     setLoading(false);
     setLastPage(totalPages === 1);
   }
 
   return (
-    <PostsContext.Provider
+    <ThoughtsContext.Provider
       value={{
         page,
-        posts,
+        thoughts: Thoughts,
         isLoading,
         isLastPage,
         handleLoadMore,
-        refreshPosts,
+        refreshThoughts,
         search,
       }}
     >
       {children}
-    </PostsContext.Provider>
+    </ThoughtsContext.Provider>
   );
 };

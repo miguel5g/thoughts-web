@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
-import { usePosts } from '../hooks/usePosts';
+import { useThoughts } from '../hooks/useThoughts';
 
 export const SearchBox = () => {
   const [search, setSearch] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const { search: handleSearch } = usePosts();
+  const { search: handleSearch } = useThoughts();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

@@ -1,4 +1,4 @@
-export const PostSkeleton = () => {
+export const ThoughtSkeleton = () => {
   return (
     <div className="flex flex-col p-6 rounded bg-gray-light">
       <div className="animate-pulse">

@@ -1,12 +1,12 @@
 import ptBR from 'date-fns/locale/pt-BR';
 import { format, formatDistance } from 'date-fns';
 
-interface PostProps {
-  post: PostData;
+interface ThoughtProps {
+  thought: ThoughtData;
 }
 
-export const Post = ({ post }: PostProps) => {
-  const createdAt = new Date(post.createdAt);
+export const Thought = ({ thought }: ThoughtProps) => {
+  const createdAt = new Date(thought.createdAt);
 
   const dates = {
     created: format(createdAt, 'd && MMMM && uuuu', { locale: ptBR }).replace(/&&/g, 'de'),
@@ -20,11 +20,11 @@ export const Post = ({ post }: PostProps) => {
         <span className="mb-px text-sm text-white text-opacity-60">há {dates.distance}</span>
       </span>
 
-      <p className="text-sm whitespace-pre-wrap">{post.content}</p>
+      <p className="text-sm whitespace-pre-wrap">{thought.content}</p>
 
-      {post.note && (
+      {thought.note && (
         <p className="mt-2 py-1.5 px-2 border-l-4 border-aqua bg-gray-highlight rounded flex items-center">
-          <span className="text-xs sm:text-sm">{post.note}</span>
+          <span className="text-xs sm:text-sm">{thought.note}</span>
         </p>
       )}
     </div>
