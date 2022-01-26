@@ -1,4 +1,4 @@
-interface PostData {
+interface ThoughtData {
   id: string;
   content: string;
   note: string | null;
@@ -6,7 +6,7 @@ interface PostData {
   updatedAt: string;
 }
 
-interface PostDataInput {
+interface ThoughtDataInput {
   content: string;
   note?: string;
   validator: string;

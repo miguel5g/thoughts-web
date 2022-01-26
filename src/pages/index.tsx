@@ -2,20 +2,20 @@ import Head from 'next/head';
 
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
-import { Post } from '../components/Post';
+import { Thought } from '../components/Thought';
 import { Button } from '../components/Button';
 import { MonthlyHeader } from '../components/MonthlyHeader';
-import { MonthlyHeaderSkeleton, PostSkeleton } from '../components/skeleton';
+import { MonthlyHeaderSkeleton, ThoughtSkeleton } from '../components/skeleton';
 
-import { usePosts } from '../hooks/usePosts';
+import { useThoughts } from '../hooks/useThoughts';
 import { SearchBox } from '../components/SearchBox';
 
 const Home = () => {
-  const { handleLoadMore, isLastPage, isLoading, posts } = usePosts();
+  const { handleLoadMore, isLastPage, isLoading, thoughts } = useThoughts();
 
   function isFirstOfMonthly(index: number): boolean {
-    const current = posts[index];
-    const previous = posts[index - 1];
+    const current = thoughts[index];
+    const previous = thoughts[index - 1];
 
     if (!previous) return true;
 
@@ -38,30 +38,30 @@ const Home = () => {
           <SearchBox />
 
           <ul className="flex flex-col w-full gap-3">
-            {isLoading && posts.length === 0 ? (
+            {isLoading && thoughts.length === 0 ? (
               <>
                 <li>
                   <MonthlyHeaderSkeleton />
-                  <PostSkeleton />
+                  <ThoughtSkeleton />
                 </li>
                 <li>
-                  <PostSkeleton />
+                  <ThoughtSkeleton />
                 </li>
                 <li>
-                  <PostSkeleton />
+                  <ThoughtSkeleton />
                 </li>
               </>
             ) : (
-              posts.map((post, index) => (
-                <li key={post.id}>
-                  {isFirstOfMonthly(index) && <MonthlyHeader date={post.createdAt} />}
+              thoughts.map((thought, index) => (
+                <li key={thought.id}>
+                  {isFirstOfMonthly(index) && <MonthlyHeader date={thought.createdAt} />}
 
-                  <Post post={post} />
+                  <Thought thought={thought} />
                 </li>
               ))
             )}
 
-            {!isLoading && posts.length === 0 && (
+            {!isLoading && thoughts.length === 0 && (
               <li className="flex flex-col items-center justify-center p-6 text-center">
                 <img src="/svg/void.svg" alt="Vazio" className="w-2/5 mb-6" />
                 <h2 className="text-3xl font-bold text-white">Não encontrei nada com este termo</h2>
@@ -70,7 +70,7 @@ const Home = () => {
             )}
           </ul>
 
-          {!isLastPage && posts.length > 0 && (
+          {!isLastPage && thoughts.length > 0 && (
             <Button className="mx-auto mt-4" onClick={handleLoadMore}>
               {isLoading ? 'Carregando...' : 'Carregar mais'}
             </Button>
